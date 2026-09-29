@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BIAS Prototype - Ratings And Audits</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/styles.css?v=20260615g" />
+  </head>
+  <body>
+    <main>
+      <nav data-workflow-nav data-active="ratings-audits"></nav>
+
+      <section class="hero">
+        <h1>Ratings And Audit Summary</h1>
+        <p id="ratingsAuditMeta">Loading rankings and running audits...</p>
+      </section>
+
+      <section class="card" style="margin-top: 16px">
+        <h3>Top 6 Comparison</h3>
+        <div id="ratingsAuditColumns" class="ratings-audit-columns"></div>
+      </section>
+
+      <section class="card" style="margin-top: 16px">
+        <h3>Cross-Candidate Audits</h3>
+        <div class="ratings-audit-grid">
+          <section class="rating-panel">
+            <h4 style="margin-top:0">Fairness Audit</h4>
+            <p id="ratingsAuditFairnessStatus" class="muted">Preparing fairness audit...</p>
+            <div id="ratingsAuditFairnessOutput" class="fairness-output"></div>
+          </section>
+          <section class="rating-panel">
+            <h4 style="margin-top:0">NTNU Audit</h4>
+            <p id="ratingsAuditNTNUStatus" class="muted">Preparing NTNU audit...</p>
+            <div id="ratingsAuditNTNUOutput" class="fairness-output"></div>
+          </section>
+        </div>
+      </section>
+
+      <section class="card" style="margin-top: 16px">
+        <h3>Next Step</h3>
+        <p class="muted">Once you have reviewed the final ranking and both audits, complete the User feedback questionnaire to capture your experience with the tool.</p>
+        <a class="btn primary" href="/feedback-questionnaire" style="display:inline-block; text-decoration:none; margin-top:6px;">Go To User Feedback Questionnaire</a>
+      </section>
+    </main>
+
+    <script src="/static/app.js?v=20260617a"></script>
+    <script>
+      window.Webtool.loadRatingsAuditsPage();
+    </script>
+  </body>
+</html>

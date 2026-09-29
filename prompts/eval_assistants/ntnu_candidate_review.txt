@@ -1,0 +1,39 @@
+Review this candidate for material NTNU policy issues only.
+
+Retrieved NTNU Documents:
+{retrieved_documents}
+
+Job Ad:
+{job_ad}
+
+Candidate:
+{candidate}
+
+Return ONLY valid JSON:
+
+{
+  "flags": [
+    {
+      "severity": "high|medium|low",
+      "issue": "",
+      "why_it_matters": "",
+      "source": ""
+    }
+  ],
+  "summary": ""
+}
+
+Rules:
+- Maximum 3 flags.
+- Each issue: max 15 words.
+- Each why_it_matters: max 20 words.
+- Summary: max 40 words.
+- Include only issues that could affect eligibility, admission, documentation, immigration, or NTNU procedure.
+- Do not restate ordinary requirements unless the candidate triggers them.
+- Do not evaluate candidate quality.
+- Do not recommend decisions.
+- If no material issue exists, return:
+{
+  "flags": [],
+  "summary": "No major NTNU policy issue flagged from the retrieved documents."
+}

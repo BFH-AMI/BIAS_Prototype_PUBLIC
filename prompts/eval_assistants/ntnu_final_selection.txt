@@ -1,0 +1,48 @@
+Review the final candidate evaluations for possible NTNU policy issues.
+
+Retrieved NTNU Documents:
+{retrieved_documents}
+
+Job Ad:
+{job_ad}
+
+Selected Candidates:
+{selected_candidates}
+
+Ratings:
+{ratings}
+
+Rationales:
+{rationales}
+
+Sensitive Attributes:
+{sensitive_attributes}
+
+Task:
+
+Using ONLY the retrieved NTNU documents:
+
+1. Identify candidates with unresolved eligibility concerns.
+2. Identify candidates with missing documentation requirements.
+3. Identify candidates with foreign degree verification requirements that should be considered.
+4. Identify situations where user rationales appear inconsistent with documented NTNU requirements.
+5. Identify important NTNU requirements that may have been overlooked.
+
+Do NOT:
+- re-rank candidates
+- assess fairness
+- conduct bias analysis
+- recommend demographic balancing
+- make hiring decisions
+
+Return:
+
+{
+  "candidate_flags": [],
+  "rationale_flags": [],
+  "policy_notes": [],
+  "sources": [],
+  "summary": ""
+}
+
+Only flag substantial issues.

@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BIAS Prototype - User Feedback Questionnaire</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/styles.css?v=20260615h" />
+  </head>
+  <body>
+    <main>
+      <nav data-workflow-nav data-active="feedback-questionnaire"></nav>
+
+      <section class="hero">
+        <h1>User Feedback Questionnaire</h1>
+        <p id="feedbackMeta">Capture structured feedback from users after completing the evaluation workflow.</p>
+        <div class="feedback-hero-actions">
+          <button type="button" class="btn primary" id="feedbackSubmitBtn">Submit Feedback</button>
+          <button type="button" class="btn primary" id="feedbackSaveBtn">Save Draft</button>
+          <button type="button" class="btn secondary" id="feedbackDownloadBtn">Download JSON</button>
+          <button type="button" class="btn secondary" id="feedbackClearBtn">Clear Form</button>
+          <span id="feedbackStatus" class="muted"></span>
+        </div>
+      </section>
+
+      <section class="card" style="margin-top: 16px">
+        <h3>Session Context</h3>
+        <div id="feedbackSessionSummary" class="feedback-session-summary"></div>
+      </section>
+
+      <form id="feedbackForm" class="feedback-form-grid" style="margin-top: 16px">
+        <section class="card feedback-form-section">
+          <h3>Participant Context</h3>
+          <div class="row">
+            <div>
+              <label for="feedbackRole">Your role</label>
+              <input id="feedbackRole" name="role" type="text" placeholder="e.g., user reviewer, hiring manager" />
+            </div>
+            <div>
+              <label for="feedbackExperience">Experience with recruitment tools</label>
+              <select id="feedbackExperience" name="experience_level">
+                <option value="">Select</option>
+                <option value="none">No prior experience</option>
+                <option value="limited">Limited</option>
+                <option value="moderate">Moderate</option>
+                <option value="extensive">Extensive</option>
+              </select>
+            </div>
+          </div>
+          <label for="feedbackWorkflowStage">Which part of the workflow did you use most?</label>
+          <textarea id="feedbackWorkflowStage" name="workflow_stage" placeholder="Describe which screens, assistants, or comparisons were most central to your evaluation."></textarea>
+        </section>
+
+        <section class="card feedback-form-section">
+          <h3>Quantitative Ratings</h3>
+          <p class="muted">Rate each statement from 1 (strongly disagree / very poor) to 5 (strongly agree / excellent).</p>
+          <div id="feedbackLikertGrid" class="feedback-likert-grid"></div>
+        </section>
+
+        <section class="card feedback-form-section">
+          <h3>Functionality And Design</h3>
+          <label for="feedbackUsefulFeatures">Which tool functions were most useful?</label>
+          <textarea id="feedbackUsefulFeatures" name="useful_features" placeholder="For example: Modify Pool, head-to-head comparisons, fairness audit, NTNU audit, ratings view."></textarea>
+          <label for="feedbackDesignComments">How did the design and layout support or hinder your work?</label>
+          <textarea id="feedbackDesignComments" name="design_comments" placeholder="Comment on navigation, readability, structure, cognitive load, or visual clarity."></textarea>
+          <label for="feedbackMissingFunctions">What functionality was missing or difficult to use?</label>
+          <textarea id="feedbackMissingFunctions" name="missing_functions" placeholder="Describe missing actions, unclear components, or pain points."></textarea>
+        </section>
+
+        <section class="card feedback-form-section">
+          <h3>Decision-Making And Fairness</h3>
+          <label for="feedbackDecisionImpact">How did the tool affect your decision-making process?</label>
+          <textarea id="feedbackDecisionImpact" name="decision_impact" placeholder="Describe whether it changed, confirmed, challenged, or slowed your judgments."></textarea>
+          <label for="feedbackFairnessImpact">How did the tool influence your awareness of fairness or bias risks?</label>
+          <textarea id="feedbackFairnessImpact" name="fairness_impact" placeholder="Describe whether the fairness-related outputs felt helpful, distracting, trustworthy, or incomplete."></textarea>
+          <label for="feedbackTrustComments">What made you trust or distrust the tool outputs?</label>
+          <textarea id="feedbackTrustComments" name="trust_comments" placeholder="Mention transparency, evidence quality, consistency, or anything else that affected trust."></textarea>
+        </section>
+
+        <section class="card feedback-form-section">
+          <h3>Overall Feedback</h3>
+          <label for="feedbackImprovementSuggestions">Suggestions for improvement</label>
+          <textarea id="feedbackImprovementSuggestions" name="improvement_suggestions" placeholder="List concrete improvements for workflow, content, interaction, or output quality."></textarea>
+          <label for="feedbackGeneralComments">General comments</label>
+          <textarea id="feedbackGeneralComments" name="general_comments" placeholder="Any additional observations, concerns, or recommendations."></textarea>
+          <label for="feedbackRecommendation">Would you recommend using this tool in future user evaluations?</label>
+          <select id="feedbackRecommendation" name="recommendation">
+            <option value="">Select</option>
+            <option value="yes">Yes</option>
+            <option value="maybe">Maybe, with improvements</option>
+            <option value="no">No</option>
+          </select>
+        </section>
+      </form>
+    </main>
+
+    <script src="/static/app.js?v=20260617a"></script>
+    <script>
+      window.Webtool.loadFeedbackQuestionnairePage();
+    </script>
+  </body>
+</html>

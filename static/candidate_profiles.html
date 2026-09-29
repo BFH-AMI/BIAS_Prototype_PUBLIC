@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BIAS Prototype - Modify Pool</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+      <link rel="stylesheet" href="/static/styles.css?v=20260615c" />
+  </head>
+  <body class="candidate-profiles-page">
+    <main>
+      <nav data-workflow-nav></nav>
+
+      <section class="hero">
+        <h1>Modify Pool</h1>
+        <p id="profileMeta">Loading pool editor...</p>
+      </section>
+
+      <section class="card profile-main-column" style="margin-top: 16px">
+          <h2 id="profileCandidateTitle" class="profile-candidate-title">Candidate</h2>
+          <p class="muted" id="profileCandidateSubtitle"></p>
+          <div id="profilePoolActions" class="profile-pool-actions"></div>
+          <div id="profileMaterialTabs" class="profile-top-tabs" aria-label="Profile sections"></div>
+          <p class="muted" id="profilePoolStatus"></p>
+
+          <div id="profileOverviewContent">
+            <div class="profile-summary-grid" id="profileSummaryGrid"></div>
+
+          <h4 style="margin-top: 18px">Strengths And Weaknesses</h4>
+          <div id="profileStrengthWeakness" class="strength-weak-grid"></div>
+
+            <h4 style="margin-top: 18px">Model Scoring Visuals</h4>
+            <div class="profile-visuals-grid">
+              <section class="card profile-visual-card" style="padding: 12px">
+                <h4 style="margin-top:0">CBR Category Radar</h4>
+                <canvas id="profileRadarChart" height="260"></canvas>
+                <div id="profileRadarLegend" class="muted" style="margin-top: 8px"></div>
+                <div id="profileRadarScores" class="profile-radar-scores"></div>
+              </section>
+              <section class="card profile-visual-card profile-subfeatures-card" style="padding: 12px">
+                <div class="profile-subfeatures-header">
+                  <h4 style="margin-top:0">Sub-feature Scores</h4>
+                  <button type="button" id="profileSubfeaturesToggle" class="profile-subfeatures-toggle" hidden aria-expanded="false">View all</button>
+                </div>
+                <div id="profileSubfeatureBarsWrap" class="profile-subfeatures-wrap">
+                  <div id="profileSubfeatureBars"></div>
+                </div>
+              </section>
+            </div>
+
+            <h4 style="margin-top: 18px">Summary Of Each Section</h4>
+            <div id="profileSectionSummaries" class="profile-summary-sections"></div>
+          </div>
+
+          <div id="profileMaterialContent" hidden>
+            <h3 id="profileDocumentTitle">Document</h3>
+            <div id="profileDocumentBody" class="profile-document-body"></div>
+          </div>
+      </section>
+
+    </main>
+
+    <aside class="card profile-pools-floating">
+      <h3 style="margin-top:0">Candidate Pools</h3>
+      <p class="muted">Candidates are either Pre-selected or in the Head-to-Head pool. Drag names between lists.</p>
+
+      <div class="profile-pools-actions">
+        <a class="btn secondary" href="/model-snapshot" style="display:inline-block; text-decoration:none">Return to Selection Pool</a>
+      </div>
+
+      <section class="profile-pool-section">
+        <h4>Pre-selected Candidates</h4>
+        <div id="preselectedCandidatesList" class="profile-pool-list" data-pool-key="preselected"></div>
+      </section>
+
+      <section class="profile-pool-section">
+        <h4>Head-to-Head Pool</h4>
+        <div id="h2hPoolCandidatesList" class="profile-pool-list" data-pool-key="h2h"></div>
+      </section>
+    </aside>
+
+    <script src="/static/app.js?v=20260617a"></script>
+    <script>
+      window.Webtool.loadCandidateProfilesPage();
+    </script>
+  </body>
+</html>

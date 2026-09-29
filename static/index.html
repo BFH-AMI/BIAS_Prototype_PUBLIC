@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BIAS Project Prototype - Overview</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+      <link rel="stylesheet" href="/static/styles.css?v=20260615c" />
+  </head>
+  <body>
+    <main>
+      <nav data-workflow-nav data-active="overview"></nav>
+
+      <section class="hero">
+        <h1>BIAS Project Prototype</h1>
+        <p>
+          This prototype combines Case-Based Reasoning (CBR), large-language-model evaluation, pairwise
+          head-to-head comparison and structured human ratings to arrive at a shortlist of candidates —
+          while surfacing fairness and policy signals throughout the process.
+        </p>
+        <p class="muted" id="datasetSummary">Loading dataset summary...</p>
+      </section>
+
+      <section class="grid" style="margin-top: 16px">
+        <article class="card">
+          <h3>CBR System</h3>
+          <p>
+            Scores each candidate by comparing them to the nearest similar cases in a labelled case base.
+            The final CBR score is a similarity-weighted average of historical shortlist / longlist / reject labels.
+          </p>
+          <p><a class="info-link" href="/cbr-scoring">How CBR scores are computed &rarr;</a></p>
+          <p><span class="badge ok">Strength</span> Transparent, tunable weights and explainable neighbour evidence.</p>
+          <p><span class="badge warn">Watch out</span> Label bias in the case base propagates to new scores; weight choices can encode hidden assumptions.</p>
+        </article>
+
+        <article class="card">
+          <h3>LLM Evaluator</h3>
+          <p>
+            An LLM reads every candidate summary alongside the job ad and independently produces a
+            shortlist and longlist. Its output seeds the head-to-head pool but does not replace human judgment.
+          </p>
+          <p><span class="badge ok">Strength</span> Captures semantic fit that structured features miss.</p>
+          <p><span class="badge warn">Watch out</span> Prompt sensitivity; biases in pre-training data; opaque reasoning unless the rationale is inspected.</p>
+        </article>
+
+        <article class="card">
+          <h3>Head-to-Head Comparison</h3>
+          <p>
+            You compare candidates in pairwise rounds, section by section. Each decision updates a
+            live score through a lightweight online learning rule, progressively separating strong candidates
+            from borderline ones.
+          </p>
+          <p><span class="badge ok">Strength</span> Forces explicit, documented comparisons; section-level choices are logged.</p>
+          <p><span class="badge warn">Watch out</span> Order effects and fatigue can influence decisions; too few rounds leave the ranking under-determined.</p>
+        </article>
+
+        <article class="card">
+          <h3>Fairness Assistant</h3>
+          <p>
+            Runs alongside the ratings stage. It generates an initial fairness review per candidate,
+            answers follow-up questions and audits consistency across the full set of ratings when you submit.
+          </p>
+          <p><span class="badge ok">Strength</span> Surfaces attribute-based risks and rating inconsistencies before a decision is locked in.</p>
+          <p><span class="badge warn">Watch out</span> The assistant flags risks — it does not make decisions. Its output should prompt reflection, not be taken as ground truth.</p>
+        </article>
+
+        <article class="card">
+          <h3>NTNU Hiring Assistant</h3>
+          <p>
+            A policy-aware assistant grounded in NTNU HR, recruitment and PhD-admission documents.
+            It checks eligibility, documentation requirements and procedural obligations for each candidate
+            and answers targeted policy questions.
+          </p>
+          <p><a class="info-link" href="/ntnu-knowledge-base">See NTNU knowledge-base documents &rarr;</a></p>
+          <p><span class="badge ok">Strength</span> Keeps institutional requirements visible throughout the evaluation, not only at the end.</p>
+          <p><span class="badge warn">Watch out</span> Only covers documents in the knowledge base; always verify against current official sources for binding decisions.</p>
+        </article>
+      </section>
+
+      <section class="card" style="margin-top: 16px">
+        <h3>Quality Signals You Should Monitor</h3>
+        <ul id="qualityNotes"></ul>
+        <p style="margin-top: 12px">
+          Suggested workflow: set CBR weights and background matching in <strong>Configure</strong>,
+          run <strong>Initial Screening</strong> to remove candidates that do not meet must-have requirements,
+          review the CBR + LLM selection pool, complete <strong>Head-to-Head</strong> rounds until the ranking
+          stabilises, then rate and group candidates in <strong>Candidate Ratings</strong>, review the final
+          ranking and assistant checks in <strong>Ratings And Audits</strong>, and finish with <strong>User Feedback</strong>.
+        </p>
+        <a class="btn secondary" href="/config" style="display:inline-block; text-decoration:none; margin-top:6px">Continue to Configure</a>
+      </section>
+    </main>
+
+    <script src="/static/app.js?v=20260617a"></script>
+    <script>
+      window.Webtool.loadOverviewPage();
+    </script>
+  </body>
+</html>

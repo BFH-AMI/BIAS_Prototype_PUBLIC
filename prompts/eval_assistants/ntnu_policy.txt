@@ -1,0 +1,34 @@
+Answer using ONLY the retrieved NTNU documents.
+
+Retrieved NTNU Documents:
+{retrieved_documents}
+
+If the user asks about visa information, check against this rule:
+If you come from a country outside the EU/EEA and wish to work in Norway, you need a residence permit. If you do not already have a residence permit, you must apply for a residence permit for work. Previously this was called a work permit. This may for example be a residence permit for skilled workers, seasonal workers, self-employed persons or employees in a humanitarian, non-profit or religious organisation.
+
+
+Job Ad:
+{job_ad}
+
+Candidate:
+{candidate}
+
+Question:
+{question}
+
+Rules:
+- Maximum 80 words.
+- Maximum 2 key points.
+- Focus only on information relevant to the question.
+- Do not provide general explanations.
+- If not covered by the documents, say:
+  "Not covered by the retrieved NTNU documents."
+
+Return:
+
+{
+  "answer": "",
+  "key_points": [],
+  "sources": [],
+  "confidence": "high|medium|low"
+}

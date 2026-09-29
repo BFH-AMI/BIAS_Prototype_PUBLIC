@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BIAS Prototype - Feedback Confirmation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/styles.css?v=20260615h" />
+  </head>
+  <body>
+    <main>
+      <nav data-workflow-nav data-active="feedback-questionnaire"></nav>
+
+      <section class="hero feedback-confirmation-hero">
+        <p class="feedback-confirmation-kicker">Workflow Complete</p>
+        <h1 id="feedbackConfirmationTitle">Thank you for your feedback.</h1>
+        <p id="feedbackConfirmationMessage">Your action has been recorded.</p>
+      </section>
+
+      <section class="card" style="margin-top: 16px">
+        <h3>Submission Summary</h3>
+        <div id="feedbackConfirmationSummary" class="feedback-session-summary"></div>
+      </section>
+
+      <section class="card" style="margin-top: 16px">
+        <h3>Next Actions</h3>
+        <div class="feedback-confirmation-actions">
+          <a class="btn primary" id="feedbackConfirmationPrimary" href="/feedback-questionnaire" style="text-decoration:none; display:inline-block;">Return To Questionnaire</a>
+          <a class="btn secondary" href="/ratings-audits" style="text-decoration:none; display:inline-block;">Back To Ratings And Audits</a>
+          <a class="btn secondary" href="/" style="text-decoration:none; display:inline-block;">Go To Overview</a>
+        </div>
+      </section>
+    </main>
+
+    <script src="/static/app.js?v=20260617a"></script>
+    <script>
+      window.Webtool.loadFeedbackConfirmationPage();
+    </script>
+  </body>
+</html>

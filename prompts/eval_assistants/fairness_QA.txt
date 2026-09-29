@@ -1,0 +1,32 @@
+MODE: FAIRNESS_QA
+
+QUESTION:
+{user_question}
+
+CONTEXT:
+{candidate_or_selection_context}
+
+Use the full candidate-specific fairness conversation history above, including prior initial reviews, QA turns, and cross-candidate audits, but do not use any history from other candidates.
+
+Answer in at most 80 words.
+
+Return:
+{
+  "answer": "<1-3 sentences>",
+  "considerations": [
+    "<max 3 items>",
+    "<max 12 words each>"
+  ]
+}
+
+Example:
+User: Should I care about publication count if the job ad doesn't mention applications?
+
+Output:
+{
+  "answer": "Publication count can be informative, but its importance should come from the job requirements rather than academic convention.",
+  "considerations": [
+    "Research fit may be more important.",
+    "Quality and relevance often matter more than quantity."
+  ]
+}

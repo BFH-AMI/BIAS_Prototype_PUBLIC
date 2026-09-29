@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BIAS Prototype - Head-to-Head</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+      <link rel="stylesheet" href="/static/styles.css?v=20260615c" />
+  </head>
+  <body>
+    <main>
+      <nav data-workflow-nav data-active="head-to-head"></nav>
+
+      <section class="hero">
+        <h1>Head-to-Head Rounds</h1>
+        <p id="runMeta">Preparing pairwise comparisons from current CBR pool...</p>
+        <p class="muted" id="roundProgress"></p>
+      </section>
+
+      <section class="card" style="margin-top: 16px">
+        <h3>Section-by-Section Comparison</h3>
+        <p class="muted" id="pairNames"></p>
+        <p class="muted" id="sectionInstructions">Click the left or right card for each section to mark which candidate is stronger. Leave both unselected for no preference.</p>
+        <div class="section-compare-header" id="sectionCompareHeader"></div>
+        <div id="sectionComparisonCards"></div>
+        <div class="grid" id="extraInfoCards" style="margin-top: 12px"></div>
+      </section>
+
+      <section class="grid compare-panels-grid" style="margin-top: 16px">
+        <article class="card visual-comparison-card">
+          <h3>Visual Comparison</h3>
+          <canvas id="categoryRadarChart" height="240"></canvas>
+          <div id="categoryRadarLegend" class="muted" style="margin-top: 8px"></div>
+          <button id="toggleFeatureBreakdown" class="btn secondary" type="button" style="margin-top: 12px">Show/Hide Details</button>
+          <div id="featureDetailedWrap" style="margin-top: 12px" hidden></div>
+        </article>
+
+        <article class="card">
+          <h3>Choose Winner</h3>
+          <div id="sectionWinnersSummary" class="cbr-details"></div>
+          <div id="choiceOptions"></div>
+          <label for="comparisonRationale">Brief rationale</label>
+          <textarea id="comparisonRationale" placeholder="Explain why the chosen candidate is stronger for the role."></textarea>
+          <p class="muted" id="roundStatus"></p>
+          <button class="btn primary" type="button" id="submitComparisonBtn">Submit Comparison</button>
+          <button class="btn secondary" type="button" id="finishRoundsBtn" style="margin-left: 8px">Finish and View Top Candidates</button>
+        </article>
+      </section>
+
+    </main>
+
+    <script src="/static/app.js?v=20260617a"></script>
+    <script>
+      window.Webtool.loadHeadToHeadPage();
+    </script>
+  </body>
+</html>

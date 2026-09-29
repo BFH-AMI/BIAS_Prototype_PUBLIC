@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>How CBR Scores Are Computed</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/styles.css?v=20260615a" />
+  </head>
+  <body>
+    <main>
+      <nav data-workflow-nav></nav>
+
+      <section class="hero">
+        <h1>How CBR Scores Are Computed</h1>
+        <p>
+          Each candidate is compared to a set of past candidates whose selection outcome is already known
+          (shortlisted, longlisted, or rejected). The system finds the most similar past candidates,
+          then blends their outcomes — weighted by how closely they match the current applicant — into a
+          single score between 0 and 1.
+        </p>
+      </section>
+
+      <section class="card" style="margin-top: 16px">
+        <h3>The Similarity Formula, In Plain Terms</h3>
+        <p>
+          Similarity between two candidates is computed feature-by-feature across four categories.
+          For each feature, a score between 0 and 1 is computed (e.g. 0 = very different, 1 = identical).
+          These feature scores are combined with the category weights you configure to produce an
+          overall similarity score for each pair.
+        </p>
+        <p>
+          Once the top-k most similar past cases are found, their known labels are averaged — but cases
+          that are more similar count for more. A neighbour with similarity 0.9 has three times the
+          influence of one with similarity 0.3.
+        </p>
+        <p class="muted">
+          Label values: shortlist = 1.0 &nbsp;|&nbsp; longlist = 0.6 &nbsp;|&nbsp; reject = 0.2.
+          A score near 1 means the most similar past cases were all shortlisted; near 0.2 means they
+          were mostly rejected.
+        </p>
+      </section>
+
+      <section class="card" style="margin-top: 16px">
+        <h3>Education Features</h3>
+        <p class="muted">These features describe the candidate's formal academic qualifications.</p>
+        <table>
+          <thead><tr><th>Feature</th><th>What it measures</th><th>How similarity is scored</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Highest degree completed</strong></td><td>The highest academic credential attained (Bachelor, Master, PhD, etc.).</td><td>Rule-based: PhD → 1.0, Master → 0.85, Bachelor → 0.65. Closer degrees score closer to 1.</td></tr>
+            <tr><td><strong>GPA</strong></td><td>Overall academic grade normalised to a 0–100 scale.</td><td>Proportional: the closer two candidates' GPAs, the higher the similarity.</td></tr>
+            <tr><td><strong>Thesis grade</strong></td><td>Master's thesis grade, normalised to 0–100.</td><td>Proportional: same logic as GPA.</td></tr>
+            <tr><td><strong>Bachelor field</strong></td><td>The subject area of the bachelor's degree (e.g. Sociology, Geography).</td><td>Text similarity to the configured preferred / acceptable background lists. Preferred matches score higher than acceptable ones.</td></tr>
+            <tr><td><strong>Master field</strong></td><td>The subject area of the master's degree.</td><td>Same as bachelor field.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="card" style="margin-top: 16px">
+        <h3>Experience Features</h3>
+        <p class="muted">These features describe research and professional history.</p>
+        <table>
+          <thead><tr><th>Feature</th><th>What it measures</th><th>How similarity is scored</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Research years</strong></td><td>Years spent in academic research roles (assistant, fellow, etc.).</td><td>Proportional up to an 8-year ceiling: the closer two values, the higher the similarity.</td></tr>
+            <tr><td><strong>Relevant professional years</strong></td><td>Years in roles with clear relevance to the position (policy, industry R&amp;D, etc.).</td><td>Proportional up to 8 years.</td></tr>
+            <tr><td><strong>Teaching years</strong></td><td>Years spent in formal teaching or supervision roles.</td><td>Proportional up to 6 years.</td></tr>
+            <tr><td><strong>Career gap months</strong></td><td>Total months of unexplained gaps in the CV.</td><td>Inverted: longer gaps score lower. Two candidates with equal gaps score 1; large divergence scores 0.</td></tr>
+            <tr><td><strong>Time since last academic activity</strong></td><td>Months since the most recent academic role or output.</td><td>Inverted: more time away from academia scores lower, up to a 36-month ceiling.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="card" style="margin-top: 16px">
+        <h3>Research Output Features</h3>
+        <p class="muted">These features capture scholarly productivity and independent research evidence.</p>
+        <table>
+          <thead><tr><th>Feature</th><th>What it measures</th><th>How similarity is scored</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Peer-reviewed publications</strong></td><td>Number of publications in peer-reviewed journals or proceedings.</td><td>Proportional up to 8. Zero publications scores 0; 8+ scores 1.</td></tr>
+            <tr><td><strong>First-author publications</strong></td><td>Publications where the candidate is the primary author.</td><td>Proportional up to 5.</td></tr>
+            <tr><td><strong>Conference outputs</strong></td><td>Conference papers, posters, or presentations.</td><td>Proportional up to 8.</td></tr>
+            <tr><td><strong>Posters or extended abstracts</strong></td><td>Shorter scholarly outputs submitted to academic events.</td><td>Proportional up to 8.</td></tr>
+            <tr><td><strong>Independent research output</strong></td><td>Whether the candidate has produced any independent output (thesis, working paper, report) beyond coursework.</td><td>Binary: both have output → 1.0, neither → 1.0, only one does → 0.0.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="card" style="margin-top: 16px">
+        <h3>Skills &amp; Methods Features</h3>
+        <p class="muted">These features describe methodological and technical capabilities, and language proficiency.</p>
+        <table>
+          <thead><tr><th>Feature</th><th>What it measures</th><th>How similarity is scored</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Quantitative methods</strong></td><td>Whether the candidate has demonstrated quantitative research skills (statistics, modelling, etc.).</td><td>Binary: both have / neither has → 1.0; mismatch → 0.0.</td></tr>
+            <tr><td><strong>Qualitative methods</strong></td><td>Whether the candidate has demonstrated qualitative research skills (interviews, discourse analysis, etc.).</td><td>Binary.</td></tr>
+            <tr><td><strong>Programming / technical skills</strong></td><td>Whether the candidate has programming or technical computing experience.</td><td>Binary.</td></tr>
+            <tr><td><strong>Number of programming languages</strong></td><td>Count of distinct programming languages the candidate has used.</td><td>Proportional up to 5.</td></tr>
+            <tr><td><strong>Experimental / empirical design</strong></td><td>Whether the candidate has experience designing empirical studies or experiments.</td><td>Binary.</td></tr>
+            <tr><td><strong>English level</strong></td><td>Self-reported or inferred English proficiency (basic → fluent → native).</td><td>Level-based: native → 1.0, fluent → 0.95, C1 → 0.82, B2 → 0.65, etc. Closer levels score closer to 1.</td></tr>
+            <tr><td><strong>Local language level</strong></td><td>Proficiency in the working language of the institution (e.g. Norwegian).</td><td>Same as English level.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="card" style="margin-top: 16px">
+        <a class="btn secondary" href="/" style="display:inline-block; text-decoration:none;">Back to Overview</a>
+      </section>
+    </main>
+    <script src="/static/app.js?v=20260617a"></script>
+  </body>
+</html>

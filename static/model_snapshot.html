@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BIAS Prototype - Selection Pool</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+      <link rel="stylesheet" href="/static/styles.css?v=20260615e" />
+  </head>
+  <body>
+    <main>
+      <nav data-workflow-nav data-active="model-snapshot"></nav>
+
+      <section class="hero">
+        <h1>Selection Pool</h1>
+        <p id="snapshotMeta">Preparing side-by-side model outputs...</p>
+      </section>
+
+      <section class="card" style="margin-top: 16px">
+        <h3>CBR vs LLM Overview</h3>
+        <p class="muted">Review the candidates selected by the CBR system and LLM assistants before starting head-to-head rounds.</p>
+        <div class="grid pre-h2h-grid" id="preH2HComparisonGrid">
+          <article class="pre-h2h-column">
+            <h4>CBR Selected Candidates</h4>
+            <div id="cbrTop10List" class="muted">Loading CBR candidates...</div>
+          </article>
+          <article class="pre-h2h-column llm-wide-column">
+            <h4>LLM Shortlist and Longlist</h4>
+            <button type="button" id="llmExpandToggle" class="btn secondary llm-expand-toggle" hidden>Expand to view all</button>
+            <div id="llmSelectionList" class="muted llm-selection-wrap">Loading LLM selections...</div>
+          </article>
+        </div>
+      </section>
+
+      <section class="card" style="margin-top: 16px">
+        <h3>Head-to-Head Pool</h3>
+        <p class="muted">This is the pool that will be used for head-to-head rounds. It reflects any edits made in Modify Pool.</p>
+        <div id="initialHeadToHeadList" class="muted">Waiting for combined selection...</div>
+      </section>
+
+      <section class="card snapshot-actions-card" style="margin-top: 16px">
+        <h3>Next Step</h3>
+        <p class="muted">Choose to continue directly or modify the head-to-head pool first.</p>
+        <div class="snapshot-actions-row">
+          <button class="btn primary" type="button" id="continueToHeadToHeadBtn">Continue to Head-to-Head</button>
+          <button class="btn secondary" type="button" id="modifyHeadToHeadPoolBtn">Modify Pool</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="/static/app.js?v=20260617a"></script>
+    <script>
+      window.Webtool.loadModelSnapshotPage();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,198 @@
+NTNU Hiring and Employment of Foreign Employees
+
+Extracted directly from NTNU's internal knowledge base page "Ansette utenlandsk medarbeider som skal jobbe i Norge"
+
+Work Authorization Requirements
+Nordic Citizens
+Nordic citizens may reside and work in Norway indefinitely without any formal permit requirements.
+EU/EEA Citizens
+
+For citizens from EU/EEA countries outside the Nordic region:
+
+If employment in Norway exceeds three months, the employee must apply for a registration certificate (residence right) through UDI.
+The employee must then appear in person at the police or a Service Centre for Foreign Workers to receive the registration certificate.
+Valid identification is required.
+Non-EU/EEA Citizens
+As a general rule, non-EU/EEA citizens must obtain a residence permit with the right to work before working in Norway.
+The permit must normally be granted before the employee arrives in Norway.
+Exceptions may apply for certain categories of workers on short-term assignments.
+Employment Documentation
+EU/EEA Employees
+
+For permit-related procedures, EU/EEA employees must provide:
+
+UDI employment certificate form, or
+employment contract.
+Non-EU/EEA Employees
+
+For permit-related procedures, non-EU/EEA employees must provide:
+
+a written job offer signed by both employer and employee.
+Authorization to Act on Behalf of Employee
+
+If NTNU acts on behalf of an employee before immigration authorities:
+
+the employee must complete a power-of-attorney form provided by UDI.
+Recognition of Education and Diplomas
+
+For some positions:
+
+education must be formally approved by Norwegian authorities.
+
+Relevant authorities include:
+
+NOKUT (National Agency for Quality Assurance in Education),
+Norwegian Registration Authority for Health Personnel.
+Registration Requirements
+Police Registration
+EU/EEA Employees (non-Nordic)
+
+Employees working more than three months in Norway must:
+
+apply electronically through UDI for a registration certificate,
+book an appointment for certificate issuance,
+appear in person at the Service Centre for Foreign Workers in Trondheim,
+bring passport or approved ID and preferably the employment contract.
+Non-EU/EEA Employees
+Employees who apply for permits in Norway must appear before police to obtain the permit sticker in their passport.
+Employees who apply through a foreign mission must report to local police within seven days of arrival in Norway.
+National Population Register Registration
+
+Employees must register with the Norwegian National Population Register when:
+
+staying in Norway for more than six months,
+having their primary overnight residence in Norway,
+having independent housing.
+
+Registration must occur within eight days of arrival or permit approval.
+
+Tax Card Requirements
+
+All employees working in Norway:
+
+must obtain a tax card,
+must provide information about expected income and duration of stay.
+
+Personal attendance at the tax office is required for foreign workers obtaining:
+
+a tax card,
+a personal identification number.
+
+Required documentation includes:
+
+valid passport,
+approved identity card for EEA/Swiss citizens,
+application form for tax card,
+employment contract or written job offer,
+registration certificate (where applicable),
+existing Norwegian D-number or national ID number (if previously assigned),
+A1 certificate if exempt from Norwegian social security membership.
+D-Number or National Identity Number
+
+When applying for a tax card for the first time:
+
+the employee receives either a D-number or Norwegian national identity number,
+this identifier is used in interactions with public authorities.
+Employer Responsibilities
+
+NTNU, as employer, is responsible for ensuring compliance with:
+
+the Working Environment Act,
+the Holiday Act,
+the Immigration Act,
+tax legislation,
+other Norwegian regulations.
+
+Where collective agreements apply:
+
+salary and working conditions must follow the collective agreement.
+Salary Payment Arrangements
+Norwegian Bank Account
+
+Employees should have a Norwegian bank account:
+
+for salary payments,
+for reimbursement of excess tax payments.
+
+A D-number or national identity number must be provided to the bank.
+
+Foreign Bank Account
+
+Until a Norwegian account is established:
+
+salary may be paid to a foreign bank account.
+Kronekort
+
+In limited circumstances:
+
+foreign employees may receive salary via a "Kronekort" payment card while awaiting a Norwegian bank account.
+This option is intended primarily for employees affected by banking restrictions or lack of banking infrastructure.
+Usage restrictions apply.
+Tax Obligations
+
+Employees working in Norway:
+
+must submit an annual tax return.
+The deadline is 30 April of the year following the income year.
+Social Security and Employer Contributions
+Employer Contributions
+
+As a general rule:
+
+employer social security contributions must be paid on compensation for work performed in Norway or on the Norwegian continental shelf.
+
+Exception:
+
+if the employee remains covered by social security legislation in another EU/EEA country,
+documentation must be provided via an A1 certificate,
+employer contributions are then paid to the country where the employee is insured.
+Membership in the Norwegian National Insurance Scheme
+
+Employees who legally work in Norway are generally:
+
+members of the Norwegian National Insurance Scheme.
+
+Membership provides rights including access to medical treatment.
+
+Employees insured in Norway:
+
+must pay Norwegian social security contributions.
+
+Employees insured in another country:
+
+must provide an A1 certificate,
+do not pay Norwegian social security contributions.
+Healthcare
+
+Employees registered in Norway:
+
+are entitled to participate in the Norwegian general practitioner (GP) scheme.
+Participation is voluntary.
+Reporting Requirements for Foreign Contractors
+
+Norwegian organizations and public bodies must report contracts involving foreign contractors when work is performed:
+
+at construction or installation sites in Norway,
+at locations under the client's control in Norway,
+on the Norwegian continental shelf,
+by companies domiciled abroad.
+
+Information about contractors and workers must be reported using form RF-1199.
+
+Registration of Self-Employed Contractors
+
+Self-employed individuals carrying out assignments in Norway:
+
+must register with the Central Coordinating Register for Legal Entities (Brønnøysund Register Centre).
+Hiring-Relevant Implications
+
+The document contains administrative and legal requirements relevant to hiring foreign employees at NTNU. It specifies:
+
+work authorization requirements,
+immigration and registration procedures,
+required employment documentation,
+recognition of foreign qualifications where applicable,
+tax and social security obligations,
+employer responsibilities under Norwegian law.
+
+The document does not provide criteria for evaluating candidate quality, academic merit, research potential, project proposals, interview performance, or selection decisions. It focuses on legal eligibility, onboarding, compliance, and employment administration for foreign hires.

@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BIAS Prototype - Candidate Ratings</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+      <link rel="stylesheet" href="/static/styles.css?v=20260616c" />
+  </head>
+  <body>
+    <main class="candidate-ratings-page">
+      <nav data-workflow-nav data-active="candidate-ratings"></nav>
+
+      <section class="hero">
+        <h1>Candidate Ratings</h1>
+        <p id="candidateRatingsMeta">Loading top candidates from head-to-head results...</p>
+      </section>
+
+      <div class="candidate-ratings-layout">
+        <aside class="candidate-ratings-sidebar candidate-ratings-sidebar-left">
+          <section class="card fairness-chatbot-card ntnu-chatbot-card">
+            <h3>NTNU Hiring Assistant</h3>
+            <p class="muted">This assistant uses NTNU policy documents to support eligibility, documentation, and procedural checks.</p>
+
+            <div class="fairness-block">
+              <h4 style="margin:0 0 6px">Initial NTNU Review</h4>
+              <p id="ntnuInitialStatus" class="muted">Loading NTNU review for this candidate...</p>
+              <div id="ntnuInitialReview" class="fairness-output"></div>
+            </div>
+
+            <div class="fairness-block" style="margin-top:12px">
+              <h4 style="margin:0 0 6px">Ask an NTNU Policy Question</h4>
+              <div id="ntnuChatLog" class="fairness-chat-log"></div>
+              <div class="fairness-qa-row">
+                <textarea id="ntnuQuestionInput" placeholder="Ask NTNU policy/process questions for this candidate or your evaluation workflow."></textarea>
+                <button type="button" class="btn secondary" id="ntnuAskBtn">Ask</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="card fairness-chatbot-card">
+            <h3>Fairness Assistant</h3>
+            <p class="muted">The assistant flags potential fairness concerns, answers follow-up questions, and audits consistency when you submit ratings.</p>
+
+            <div class="fairness-block">
+              <h4 style="margin:0 0 6px">Initial Fairness Notes</h4>
+              <p id="fairnessInitialStatus" class="muted">Loading fairness notes for this candidate...</p>
+              <div id="fairnessInitialReview" class="fairness-output"></div>
+            </div>
+
+            <div class="fairness-block" style="margin-top:12px">
+              <h4 style="margin:0 0 6px">Ask a Fairness Question</h4>
+              <div id="fairnessChatLog" class="fairness-chat-log"></div>
+              <div class="fairness-qa-row">
+                <textarea id="fairnessQuestionInput" placeholder="Ask about fairness, consistency, or bias risks for this candidate or your ratings."></textarea>
+                <button type="button" class="btn secondary" id="fairnessAskBtn">Ask</button>
+              </div>
+            </div>
+          </section>
+        </aside>
+
+        <div class="candidate-ratings-main">
+          <section id="topCandidatesCard" class="card" style="margin-top: 16px">
+            <h3>Top 6 Candidates</h3>
+            <div id="ratingCandidateList" class="profile-top-tabs rating-candidate-tabs"></div>
+          </section>
+
+          <section class="card" style="margin-top: 16px">
+            <h3>Profile Views</h3>
+            <p class="muted">Select a tab to switch between profile overview, full application documents, and sensitive information.</p>
+            <div id="profileMaterialTabs" class="profile-top-tabs" aria-label="Profile sections"></div>
+          </section>
+
+          <section class="card profile-main-column" style="margin-top: 16px">
+            <div id="profileOverviewContent">
+              <h3 id="profileCandidateTitle">Candidate</h3>
+              <p class="muted" id="profileCandidateSubtitle"></p>
+              <div class="profile-summary-grid" id="profileSummaryGrid"></div>
+
+              <h4 style="margin-top: 18px">Strengths And Weaknesses</h4>
+              <div id="profileStrengthWeakness" class="strength-weak-grid"></div>
+
+              <h4 style="margin-top: 18px">Model Scoring Visuals</h4>
+              <div class="profile-visuals-grid">
+                <section class="card profile-visual-card" style="padding: 12px">
+                  <h4 style="margin-top:0">CBR Category Radar</h4>
+                  <canvas id="profileRadarChart" height="260"></canvas>
+                  <div id="profileRadarLegend" class="muted" style="margin-top: 8px"></div>
+                </section>
+                <section class="card profile-visual-card profile-subfeatures-card" style="padding: 12px">
+                  <div class="profile-subfeatures-header">
+                    <h4 style="margin-top:0">Sub-feature Scores</h4>
+                    <button type="button" id="profileSubfeaturesToggle" class="profile-subfeatures-toggle" hidden aria-expanded="false">View all</button>
+                  </div>
+                  <div id="profileSubfeatureBarsWrap" class="profile-subfeatures-wrap">
+                    <div id="profileSubfeatureBars"></div>
+                  </div>
+                </section>
+              </div>
+
+              <h4 style="margin-top: 18px">Summary Of Each Section</h4>
+              <div id="profileSectionSummaries" class="profile-summary-sections"></div>
+            </div>
+
+            <div id="profileMaterialContent" hidden>
+              <h3 id="profileDocumentTitle">Document</h3>
+              <div id="profileDocumentRatingControl" class="rating-inline-control"></div>
+              <div id="profileDocumentBody" class="profile-document-body"></div>
+            </div>
+
+            <div id="profileSensitiveContent" hidden>
+              <h3>Sensitive Information</h3>
+              <section class="profile-summary-section-card" style="margin-top: 8px">
+                <h4 style="margin-top:0">Real Candidate Name</h4>
+                <div id="profileSensitiveRealName" class="section-summary-body"></div>
+              </section>
+              <section class="profile-summary-section-card" style="margin-top: 10px">
+                <h4 style="margin-top:0">Sensitive Attributes</h4>
+                <div id="profileSensitiveAttributes" class="section-summary-body"></div>
+              </section>
+            </div>
+          </section>
+        </div>
+
+        <aside class="candidate-ratings-sidebar">
+          <section class="card rating-utility-card rating-scoreboard-card">
+            <div class="rating-scoreboard-header">
+              <div>
+                <h3 style="margin:0">Overall Candidate Rating</h3>
+                <p class="muted" style="margin:4px 0 0">Average stars are computed equally across all rated summary fields and application documents.</p>
+              </div>
+              <div id="ratingFinalStarsBadge" class="rating-final-badge">Unrated</div>
+            </div>
+            <div class="rating-scoreboard-grid">
+              <div class="rating-score-item">
+                <span class="muted">Average Stars</span>
+                <strong id="ratingWeightedAverageValue">-</strong>
+                <span class="muted" id="ratingWeightedAverageMeta">No ratings yet.</span>
+              </div>
+              <div class="rating-score-item">
+                <span class="muted">Your Overall Stars</span>
+                <div id="ratingOverallStarsControl"></div>
+              </div>
+            </div>
+
+            <label for="ratingOverallJustification" style="margin-top: 10px">Justification</label>
+            <textarea id="ratingOverallJustification" placeholder="Explain why this candidate received the overall score."></textarea>
+            <div style="margin-top:10px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+              <button type="button" class="btn primary" id="ratingSubmitEvaluationBtn">Submit Evaluation</button>
+              <span id="ratingSubmitEvaluationStatus" class="muted"></span>
+            </div>
+
+            <details id="ratingScoreDetails" open style="margin-top: 12px">
+              <summary>
+                <strong>Rate Summary Fields And Documents</strong>
+              </summary>
+              <section class="rating-utility-inner" style="margin-top: 10px">
+                <p class="muted" style="margin:0 0 8px">You do not need to rate every field. These ratings are only a baseline to inform your overall rating.</p>
+                <div class="rating-panels-grid">
+                  <section class="rating-panel">
+                    <h4 style="margin-top:0">Summary Fields</h4>
+                    <div id="summaryFieldRatings" class="rating-rows"></div>
+                  </section>
+                  <section class="rating-panel">
+                    <h4 style="margin-top:0">Application Documents</h4>
+                    <div id="documentFieldRatings" class="rating-rows"></div>
+                  </section>
+                </div>
+              </section>
+            </details>
+          </section>
+
+          <section class="card rating-groups-collapsible-card rating-actions-sticky" style="margin-top: 12px">
+            <button type="button" class="btn primary" id="submitAllRatingsRunAuditsBtn" style="width:100%">Submit all ratings and run audits</button>
+            <details id="ratingGroupsDetails" style="margin-top: 10px">
+              <summary>
+                <strong>Star Groups</strong>
+              </summary>
+              <p class="muted">Candidates are grouped by final stars (overall stars if provided, otherwise rounded average stars).</p>
+              <div id="ratingGroups" class="rating-groups-grid"></div>
+            </details>
+          </section>
+        </aside>
+      </div>
+    </main>
+
+    <script src="/static/app.js?v=20260617a"></script>
+    <script>
+      window.Webtool.loadCandidateRatingsPage();
+    </script>
+  </body>
+</html>

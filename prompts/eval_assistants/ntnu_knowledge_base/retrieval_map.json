@@ -1,0 +1,35 @@
+{
+  "dei_dev_plan.txt": [
+    "ntnu_diversity_equality_inclusion",
+    "ntnu_equal_opportunity_and_fairness",
+    "ntnu_international_recruitment",
+    "ntnu_accessibility_and_accommodation"
+  ],
+  "documentation_requirements.txt": [
+    "ntnu_phd_admission_requirements",
+    "ntnu_foreign_education_documentation",
+    "ntnu_degree_verification",
+    "ntnu_translation_requirements"
+  ],
+  "foreign_employees.txt": [
+    "ntnu_foreign_employee_onboarding",
+    "ntnu_work_authorization",
+    "ntnu_immigration_registration",
+    "ntnu_tax_social_security"
+  ],
+  "hr_policy.txt": [
+    "ntnu_hr_policy",
+    "ntnu_qualification_principle",
+    "ntnu_recruitment_principles",
+    "ntnu_equal_opportunity_and_fairness",
+    "ntnu_international_recruitment"
+  ],
+  "recruitment_policy.txt": [
+    "ntnu_recruitment_positions",
+    "ntnu_phd_recruitment_criteria",
+    "ntnu_interview_reference_requirements",
+    "ntnu_personal_suitability",
+    "ntnu_recommendation_and_ranking",
+    "ntnu_language_training"
+  ]
+}

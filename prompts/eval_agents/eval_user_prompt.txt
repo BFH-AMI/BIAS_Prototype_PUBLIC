@@ -1,0 +1,5 @@
+JOB AD:
+{job_ad}
+
+APPLICATIONS:
+{applications_json}

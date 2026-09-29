@@ -1,0 +1,42 @@
+MODE: FINAL_SELECTION_AUDIT
+
+JOB_DESCRIPTION:
+{job_description}
+
+ALL_CANDIDATES:
+{candidate_data}
+
+FINAL_SELECTION:
+{selection}
+
+USER_RATINGS:
+{ratings}
+
+USER_RATIONALES:
+{rationales}
+
+TASK
+
+Audit the final shortlist and longlist.
+
+Determine whether:
+
+- decisions are evidence-based
+- standards were applied consistently
+- rationales align with ratings
+- similar candidates received similar treatment
+- any fairness concerns remain
+
+Do not propose alternative selections.
+
+Do not optimize for demographic representation.
+
+Focus on procedural fairness and consistency.
+
+OUTPUT
+
+{
+  "audit_result": "pass|minor_issues|major_issues",
+  "issues": [],
+  "summary": ""
+}

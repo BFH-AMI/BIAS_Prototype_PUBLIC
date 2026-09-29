@@ -1,0 +1,10 @@
+JOB AD:
+{job_ad}
+
+APPLICATIONS:
+{applications_json}
+
+EVALUATOR_SELECTION:
+{selection_json}
+
+Audit this selection.

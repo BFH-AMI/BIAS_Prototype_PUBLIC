@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BIAS Prototype - Config</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+      <link rel="stylesheet" href="/static/styles.css?v=20260615c" />
+  </head>
+  <body>
+    <main>
+      <nav data-workflow-nav data-active="config"></nav>
+
+      <section class="hero">
+        <h1>Configuration</h1>
+        <p>Configure initial screening, automated evaluation, and AI-assisted evaluation before generating the selection pool.</p>
+      </section>
+
+      <section class="card" style="margin-top: 16px">
+        <h3 style="margin:0 0 8px">Active Job Advertisement</h3>
+        <p class="muted" style="margin-top:0">The position your candidates are being evaluated against.</p>
+        <div id="jobAdSections"></div>
+      </section>
+
+      <form id="configForm" class="grid" style="margin-top: 16px" action="/preselection" method="get">
+        <section class="card" style="grid-column: 1 / -1">
+          <h3>Pipeline Settings</h3>
+          <div class="config-tabs" style="margin-top:10px">
+            <button type="button" class="btn secondary active" data-config-tab="initial" aria-pressed="true">Initial Screening</button>
+            <button type="button" class="btn secondary" data-config-tab="automated" aria-pressed="false">Automated Evaluation</button>
+            <button type="button" class="btn secondary" data-config-tab="ai" aria-pressed="false">AI-Assisted Evaluation</button>
+          </div>
+        </section>
+
+        <section class="card" data-config-panel="initial" style="grid-column: 1 / -1">
+          <h3>Initial Screening</h3>
+          <p class="muted" style="margin-top:0">
+            Define must-have requirements for the initial screening stage. Defaults are extracted from the job ad and relevant NTNU documents and can be edited.
+          </p>
+          <table class="background-entries-table">
+            <colgroup>
+              <col class="background-col-field" />
+              <col class="background-col-actions" />
+            </colgroup>
+            <thead>
+              <tr>
+                <th>Must-have requirement</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="initialRequirementEntries" class="background-entries"></tbody>
+          </table>
+          <button type="button" class="btn secondary" id="addRequirementEntryBtn" style="margin-top:10px">Add Requirement</button>
+
+          <label for="preselectionModelSelect">Initial screening model</label>
+          <select id="preselectionModelSelect">
+            <option value="gpt-5.4-mini">gpt-5.4-mini</option>
+            <option value="gpt-5-nano">gpt-5-nano</option>
+          </select>
+          <label for="preselectionAdditionalInstructions">Additional instructions</label>
+          <textarea id="preselectionAdditionalInstructions" rows="5" placeholder="Optional constraints for the initial screening agent."></textarea>
+          <details style="margin-top: 10px">
+            <summary>View initial screening prompt</summary>
+            <pre id="preselectionPromptPreview" style="white-space: pre-wrap; margin-top: 8px"></pre>
+          </details>
+        </section>
+
+        <section class="card" data-config-panel="ai" style="grid-column: 1 / -1">
+          <h3>Head-to-Head Strength</h3>
+          <label for="h2hEta">Head-to-head update strength <span class="slider-value" id="h2hEtaValue">0.10</span></label>
+          <input id="h2hEta" type="range" min="0.01" max="0.50" step="0.01" value="0.10" />
+          <small>Controls how strongly each comparison updates candidate scores. Lower = steadier, higher = more reactive.</small>
+        </section>
+
+        <section class="card" id="cbrConfigPanel" data-config-panel="automated">
+          <h3>CBR Scoring Controls</h3>
+          <p class="muted" style="margin: 12px 0 0">
+            Feature weights control how much each high-level category contributes when the CBR system compares two candidates.
+            Higher weight means differences in that category matter more in the similarity calculation.
+          </p>
+
+          <label for="wEducation">Education <span class="slider-value" id="wEducationValue">0.24</span></label>
+          <input id="wEducation" type="range" min="0" max="1" step="0.01" value="0.24" />
+          <details open>
+            <summary>Education feature breakdown</summary>
+            <p class="muted">Select which subfeatures to include in scoring:</p>
+            <label><input type="checkbox" data-subfeature-category="education" data-subfeature-key="highest_degree_completed" checked /> Highest degree completed</label>
+            <label><input type="checkbox" data-subfeature-category="education" data-subfeature-key="gpa_normalized_0_100" checked /> GPA</label>
+            <label><input type="checkbox" data-subfeature-category="education" data-subfeature-key="master_thesis_grade_normalized_0_100" checked /> Thesis grade</label>
+            <label><input type="checkbox" data-subfeature-category="education" data-subfeature-key="bachelor_field" checked /> Bachelor field</label>
+            <label><input type="checkbox" data-subfeature-category="education" data-subfeature-key="master_field" checked /> Master field</label>
+          </details>
+
+          <label for="wExperience">Experience <span class="slider-value" id="wExperienceValue">0.28</span></label>
+          <input id="wExperience" type="range" min="0" max="1" step="0.01" value="0.28" />
+          <details>
+            <summary>Experience feature breakdown</summary>
+            <p class="muted">Select which subfeatures to include in scoring:</p>
+            <label><input type="checkbox" data-subfeature-category="experience" data-subfeature-key="years_research_experience" checked /> Research years</label>
+            <label><input type="checkbox" data-subfeature-category="experience" data-subfeature-key="years_relevant_professional_experience" checked /> Relevant professional years</label>
+            <label><input type="checkbox" data-subfeature-category="experience" data-subfeature-key="years_teaching_experience" checked /> Teaching years</label>
+            <label><input type="checkbox" data-subfeature-category="experience" data-subfeature-key="career_gap_months" checked /> Career gap months</label>
+            <label><input type="checkbox" data-subfeature-category="experience" data-subfeature-key="time_since_last_academic_activity_months" checked /> Time since last academic activity</label>
+          </details>
+
+          <label for="wResearchOutputs">Research outputs <span class="slider-value" id="wResearchOutputsValue">0.22</span></label>
+          <input id="wResearchOutputs" type="range" min="0" max="1" step="0.01" value="0.22" />
+          <details>
+            <summary>Research outputs feature breakdown</summary>
+            <p class="muted">Select which subfeatures to include in scoring:</p>
+            <label><input type="checkbox" data-subfeature-category="research_outputs" data-subfeature-key="num_peer_reviewed_publications" checked /> Peer-reviewed publications</label>
+            <label><input type="checkbox" data-subfeature-category="research_outputs" data-subfeature-key="num_first_author_publications" checked /> First-author publications</label>
+            <label><input type="checkbox" data-subfeature-category="research_outputs" data-subfeature-key="num_conference_outputs" checked /> Conference outputs</label>
+            <label><input type="checkbox" data-subfeature-category="research_outputs" data-subfeature-key="num_posters_or_extended_abstracts" checked /> Posters or abstracts</label>
+            <label><input type="checkbox" data-subfeature-category="research_outputs" data-subfeature-key="has_independent_research_output" checked /> Independent research output</label>
+          </details>
+
+          <label for="wSkillsMethods">Skills and methods <span class="slider-value" id="wSkillsMethodsValue">0.26</span></label>
+          <input id="wSkillsMethods" type="range" min="0" max="1" step="0.01" value="0.26" />
+          <details>
+            <summary>Skills and methods feature breakdown</summary>
+            <p class="muted">Select which subfeatures to include in scoring:</p>
+            <label><input type="checkbox" data-subfeature-category="skills_and_methods" data-subfeature-key="has_quantitative_methods" checked /> Quantitative methods</label>
+            <label><input type="checkbox" data-subfeature-category="skills_and_methods" data-subfeature-key="has_qualitative_methods" checked /> Qualitative methods</label>
+            <label><input type="checkbox" data-subfeature-category="skills_and_methods" data-subfeature-key="has_programming_or_technical_skills" /> Programming/technical skills</label>
+            <label><input type="checkbox" data-subfeature-category="skills_and_methods" data-subfeature-key="num_programming_languages" /> Number of programming languages</label>
+            <label><input type="checkbox" data-subfeature-category="skills_and_methods" data-subfeature-key="has_experimental_or_empirical_design" checked /> Experimental/empirical design</label>
+            <label><input type="checkbox" data-subfeature-category="skills_and_methods" data-subfeature-key="english_level" checked /> English level</label>
+            <label><input type="checkbox" data-subfeature-category="skills_and_methods" data-subfeature-key="local_language_level" checked /> Local language level</label>
+          </details>
+          <small>Weights are normalized automatically and applied per category across the columns currently available in the case base.</small>
+        </section>
+
+        <section class="card" id="cbrBackgroundPanel" data-config-panel="automated">
+          <h3 style="margin:0 0 8px">Education Background Matching</h3>
+          <p class="muted" style="margin-top:0">
+            Bachelor and master field scores are computed by max text similarity against these lists.
+            Preferred backgrounds are weighted higher than acceptable backgrounds.
+          </p>
+          <table class="background-entries-table">
+            <colgroup>
+              <col class="background-col-field" />
+              <col class="background-col-check" />
+              <col class="background-col-check" />
+              <col class="background-col-actions" />
+            </colgroup>
+            <thead>
+              <tr>
+                <th>Field</th>
+                <th>Preferred</th>
+                <th>Acceptable</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="backgroundEntries" class="background-entries"></tbody>
+          </table>
+          <button type="button" class="btn secondary" id="addBackgroundEntryBtn" style="margin-top:10px">Add Background</button>
+          <small>Each row can be marked as either preferred or acceptable.</small>
+        </section>
+
+        <section class="card" id="llmConfigPanel" data-config-panel="automated">
+          <h3>LLM Evaluator Settings</h3>
+          <p class="muted">Configure LLM model selection and additional evaluator instructions.</p>
+          <label for="llmModelSelect">Model</label>
+          <select id="llmModelSelect">
+            <option value="gpt-5.4-mini">gpt-5.4-mini</option>
+            <option value="gpt-5-nano">gpt-5-nano</option>
+          </select>
+          <label for="llmAdditionalInstructions">Additional instructions</label>
+          <textarea id="llmAdditionalInstructions" rows="8" placeholder="e.g., prioritize interdisciplinary fit with WP3 and stakeholder communication evidence."></textarea>
+          <details style="margin-top: 10px">
+            <summary>View system prompt</summary>
+            <pre id="llmSystemPromptPreview" style="white-space: pre-wrap; margin-top: 8px"></pre>
+          </details>
+        </section>
+
+        <section class="card" id="fairnessConfigPanel" data-config-panel="ai">
+          <h3>Fairness Assistant Settings</h3>
+          <p class="muted">Configure the model and extra instructions used by the fairness assistant during candidate ratings.</p>
+          <label for="fairnessModelSelect">Model</label>
+          <select id="fairnessModelSelect">
+            <option value="gpt-5.4-mini">gpt-5.4-mini</option>
+            <option value="gpt-5-nano">gpt-5-nano</option>
+          </select>
+          <label for="fairnessAdditionalInstructions">Additional instructions</label>
+          <textarea id="fairnessAdditionalInstructions" rows="8" placeholder="e.g., prioritize procedural consistency and only flag substantial concerns."></textarea>
+          <details style="margin-top: 10px">
+            <summary>View system prompt</summary>
+            <pre id="fairnessSystemPromptPreview" style="white-space: pre-wrap; margin-top: 8px"></pre>
+          </details>
+        </section>
+
+        <section class="card" id="ntnuConfigPanel" data-config-panel="ai">
+          <h3>NTNU Assistant Settings</h3>
+          <p class="muted">Configure the model and extra instructions used by the NTNU policy assistant during candidate ratings.</p>
+          <label for="ntnuModelSelect">Model</label>
+          <select id="ntnuModelSelect">
+            <option value="gpt-5.4-mini">gpt-5.4-mini</option>
+            <option value="gpt-5-nano">gpt-5-nano</option>
+          </select>
+          <label for="ntnuAdditionalInstructions">Additional instructions</label>
+          <textarea id="ntnuAdditionalInstructions" rows="8" placeholder="e.g., stay concise and focus on binding NTNU documentation requirements."></textarea>
+          <details style="margin-top: 10px">
+            <summary>View system prompt</summary>
+            <pre id="ntnuSystemPromptPreview" style="white-space: pre-wrap; margin-top: 8px"></pre>
+          </details>
+        </section>
+
+        <section class="card" style="grid-column: 1 / -1">
+          <h3 style="margin-top:0">Save And Continue</h3>
+          <button class="btn secondary" id="resetConfigBtn" type="button" style="margin-right:8px">Reset to Defaults</button>
+          <button class="btn secondary" id="saveConfigBtn" type="button" style="margin-right:8px">Save Settings</button>
+          <button class="btn primary" id="continueConfigBtn" type="button">Continue</button>
+          <p class="muted" id="saveStatus">Continue will open the Initial Screening stage.</p>
+        </section>
+      </form>
+    </main>
+
+    <script src="/static/app.js?v=20260617a"></script>
+    <script>
+      window.Webtool.loadConfigPage();
+    </script>
+  </body>
+</html>

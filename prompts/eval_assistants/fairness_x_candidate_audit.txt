@@ -1,0 +1,69 @@
+MODE: CROSS_CANDIDATE_AUDIT
+
+JOB_AD:
+{job_ad}
+
+ALL_CANDIDATES:
+{candidate_summaries}
+
+SENSITIVE_ATTRIBUTES:
+{sensitive_attributes}
+
+USER_RATINGS:
+{ratings}
+
+USER_RATIONALES:
+{rationales}
+
+Review the ratings and rationales.
+
+Only identify meaningful fairness concerns.
+
+Ignore minor differences.
+
+Look for:
+
+- prestige effects
+- language-polish effects
+- career-gap penalties
+- gender-related patterns
+- nationality/name-origin patterns
+- unequal standards
+- inconsistent rationales
+- rating/rationale mismatches
+
+For every issue:
+
+- explain why it may matter
+- cite specific candidates
+- suggest a question the evaluator should consider
+
+Return:
+
+{
+  "issues": [
+    {
+      "severity": "low|medium|high",
+      "message": "",
+      "question": ""
+    }
+  ],
+  "summary": ""
+}
+
+Example output:
+{
+  "issues": [
+    {
+      "severity": "medium",
+      "message": "Candidates with caregiving-related career gaps are receiving consistently lower ratings despite similar evidence of research preparedness.",
+      "question": "Would these ratings change if the gap reason were hidden?"
+    },
+    {
+      "severity": "medium",
+      "message": "Applications written in highly polished English currently receive higher proposal scores than candidates with similar methodological preparation.",
+      "question": "Are proposal ratings reflecting content quality or writing style?"
+    }
+  ],
+  "summary": "Possible language-polish and career-gap effects detected."
+}

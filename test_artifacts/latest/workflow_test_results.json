@@ -1,0 +1,60 @@
+{
+  "generated_at": "2026-06-15T17:41:27.174725+00:00",
+  "base_url": "http://127.0.0.1:8010",
+  "overall_passed": true,
+  "passed_count": 6,
+  "failed_count": 0,
+  "cases": [
+    {
+      "name": "Modify Pool persistence",
+      "status": "passed",
+      "duration_seconds": 2.041,
+      "details": "Initial pool 10; modified pool 9; snapshot showed 9."
+    },
+    {
+      "name": "Backtracking reloads dependencies",
+      "status": "passed",
+      "duration_seconds": 0.853,
+      "details": "Pool reset from 9 back to 10 after Config change."
+    },
+    {
+      "name": "Head-to-Head finish to Top Candidates",
+      "status": "passed",
+      "duration_seconds": 0.11,
+      "details": "Head-to-Head finished and navigated to Top Candidates."
+    },
+    {
+      "name": "Candidate Ratings and audits render",
+      "status": "passed",
+      "duration_seconds": 1.235,
+      "details": "Candidate Ratings saved and Ratings & Audits rendered both assistant outputs."
+    },
+    {
+      "name": "Feedback submission completes",
+      "status": "passed",
+      "duration_seconds": 0.917,
+      "details": "Feedback submitted with workflow session id 9ad0fd9d-b05c-4945-9de8-2750344db8b2."
+    },
+    {
+      "name": "Logs capture workflow inputs and outputs",
+      "status": "passed",
+      "duration_seconds": 0.599,
+      "details": "Workflow logs=28, API logs=27, ranking logs=1, HR feedback logs=1."
+    }
+  ],
+  "log_counts": {
+    "workflow_stage_events": 28,
+    "api_events": 27,
+    "ranking_events": 1,
+    "hr_feedback_events": 1
+  },
+  "artifacts": {
+    "workflow_stage_log": "/Users/pia4/Desktop/BFH/github_repos/BIAS_prototype_tool/webtool/test_artifacts/latest/logs/workflow_stage_events.jsonl",
+    "api_event_log": "/Users/pia4/Desktop/BFH/github_repos/BIAS_prototype_tool/webtool/test_artifacts/latest/logs/api_events.jsonl",
+    "ranking_log": "/Users/pia4/Desktop/BFH/github_repos/BIAS_prototype_tool/webtool/test_artifacts/latest/logs/head_to_head_rankings.jsonl",
+    "hr_feedback_log": "/Users/pia4/Desktop/BFH/github_repos/BIAS_prototype_tool/webtool/test_artifacts/latest/logs/hr_feedback_responses.jsonl",
+    "server_output": "/Users/pia4/Desktop/BFH/github_repos/BIAS_prototype_tool/webtool/test_artifacts/latest/stub_server_output.log",
+    "result_json": "/Users/pia4/Desktop/BFH/github_repos/BIAS_prototype_tool/webtool/test_artifacts/latest/workflow_test_results.json",
+    "report_pdf": "/Users/pia4/Desktop/BFH/github_repos/BIAS_prototype_tool/webtool/test_artifacts/latest/workflow_test_report.pdf"
+  }
+}

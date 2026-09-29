@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BIAS Prototype - Top Candidates</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+      <link rel="stylesheet" href="/static/styles.css?v=20260615d" />
+  </head>
+  <body>
+    <main>
+      <nav data-workflow-nav data-active="top-candidates"></nav>
+
+      <section class="hero">
+        <h1>Top Candidates After Head-to-Head</h1>
+        <p id="topMeta">Loading shortlist and longlist...</p>
+      </section>
+
+      <section class="card" style="margin-top: 16px">
+        <h3>Selection Groups</h3>
+        <div class="top-groups-grid">
+          <article class="top-group-panel">
+            <h4>Shortlist (Top 6)</h4>
+            <div id="shortlistCandidatesList" class="muted">Loading shortlist...</div>
+          </article>
+          <article class="top-group-panel">
+            <h4>Longlist (Remaining)</h4>
+            <div id="longlistCandidatesList" class="muted">Loading longlist...</div>
+          </article>
+        </div>
+      </section>
+
+      <section class="card" style="margin-top: 16px">
+        <h3>Fairness Assistant Review</h3>
+        <p class="muted" id="topFairnessStatus">Reviewing decision trends and rationale consistency...</p>
+        <div id="topFairnessSummary" class="top-fairness-output"></div>
+      </section>
+
+      <section class="card" style="margin-top: 16px">
+        <h3>Next Step</h3>
+        <p class="muted">Go to candidate ratings, or run more head-to-head comparisons first.</p>
+        <div class="snapshot-actions-row">
+          <a class="btn secondary" href="/candidate-ratings" style="display:inline-block; text-decoration:none">Go to Candidate Ratings</a>
+          <a class="btn secondary" href="/head-to-head" style="display:inline-block; text-decoration:none">Do Additional Head-to-Head Comparisons</a>
+        </div>
+      </section>
+    </main>
+
+    <script src="/static/app.js?v=20260617a"></script>
+    <script>
+      window.Webtool.loadTopCandidatesPage();
+    </script>
+  </body>
+</html>

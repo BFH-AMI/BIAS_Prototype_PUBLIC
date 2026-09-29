@@ -1,0 +1,43 @@
+MODE: CANDIDATE_REVIEW
+
+JOB_AD:
+{job_ad}
+
+CANDIDATE_SUMMARY:
+{candidate_summary}
+
+SENSITIVE_ATTRIBUTES:
+{sensitive_attributes}
+
+CURRENT_RATINGS:
+{ratings}
+
+CURRENT_NOTES:
+{notes}
+
+Review this candidate for possible fairness concerns.
+
+Only mention concerns that could realistically affect evaluation.
+
+Return:
+
+{
+  "flags": [
+    "..."
+  ],
+  "reflection_questions": [
+    "..."
+  ]
+}
+
+Example output:
+{
+  "flags": [
+    "The proposal is written very clearly. Be careful not to equate writing polish with research preparedness.",
+    "The candidate comes from a highly prestigious institution. Ensure judgments are based on documented achievements rather than institutional reputation."
+  ],
+  "reflection_questions": [
+    "Would you reach the same conclusion if the same record came from a less prestigious university?",
+    "Which specific pieces of evidence most support your rating?"
+  ]
+}
